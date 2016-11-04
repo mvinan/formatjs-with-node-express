@@ -1,0 +1,10 @@
+{
+  "name": "cms",
+  "version": "0.0.1",
+  "author": "Miguel Viñan",
+  "license": "MIT",
+  "dependencies": {
+    "font-awesome": "*",
+    "normalize-css": "*"
+  }
+}

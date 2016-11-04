@@ -5,19 +5,37 @@
   "scripts": {
     "start": "node ./bin/www",
     "debuger": "DEBUG=cms:* npm start",
-    "hotnode": "hotnode ./bin/www"
+    "hotnode": "hotnode ./src/app.js"
   },
   "dependencies": {
+    "autoprefixer": "^6.5.1",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "express": "~4.14.0",
+    "express-handlebars": "^3.0.0",
     "hotnode": "0.0.8",
-    "jade": "~1.11.0",
+    "html-minifier": "^3.1.0",
+    "js-yaml": "^3.6.1",
+    "lodash": "^4.16.6",
     "morgan": "~1.7.0",
+    "node-sass": "^3.11.1",
+    "node-sass-middleware": "^0.9.8",
+    "oauth": "^0.9.14",
+    "postcss-middleware": "^1.1.2",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "pm2": "^2.0.19"
+    "bower": "^1.7.9",
+    "chai": "^3.5.0",
+    "git-guppy": "^1.2.1",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^3.0.1",
+    "gulp-standard": "^8.0.2",
+    "guppy-pre-push": "^0.2.1",
+    "mocha": "^3.1.2",
+    "pm2": "^2.0.19",
+    "rewire": "^2.5.2",
+    "sinon": "^1.17.6"
   }
 }
