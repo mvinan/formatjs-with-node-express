@@ -1,8 +1,14 @@
 .button {
-  background-color: red; }
+  background-color: #323232;
+  padding: 10px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s ease; }
+  .button:hover {
+    background-color: rgba(50, 50, 50, 0.8); }
 
 body {
-  background-color: teal;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 h1 {

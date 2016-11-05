@@ -1,0 +1,14 @@
+{
+  "site": {
+    "language": "en",
+    "title": "CMS with node",
+    "meta": {
+      "abstract": "Learn to code",
+      "description": "Learn to code",
+      "keywords": "HTML5, Javascript, Node JS"
+    }
+  },
+  "Home": {
+    "welcome": "Bienvenidos a Making Developers"
+  }
+}

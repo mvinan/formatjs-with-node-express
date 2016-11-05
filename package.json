@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "gulp",
-    "dev": "NODE_ENV=development nodemon ./src/server.js"
+    "start": "gulp start",
+    "dev": "gulp"
   },
   "standard": {
     "parse": "babel-eslint"
