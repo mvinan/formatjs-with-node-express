@@ -1,7 +1,7 @@
-var gulp = require('gulp')
-var standard = require('gulp-standard')
+import gulp from 'gulp'
+import standard from 'gulp-standard'
 
-module.exports = function () {
+export default function () {
   gulp.task('lint', function () {
     return gulp.src([
       'src/**/*.js',

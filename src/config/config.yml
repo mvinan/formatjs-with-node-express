@@ -1,0 +1,40 @@
+---
+production: &default
+  serverPort: 3000
+  baseUrl: http://www.miguelvinan.com
+  site:
+    title: CMS with Node
+    description: Web Development Tutorials
+  views:
+    engine: .hbs
+    extension: .hbs
+    layout: default
+  html:
+    livereload: false
+    minify: true
+    css:
+      sassCompile: true
+      compress: true
+  app:
+    default: blog
+  languages:
+    default: en
+    list: [en, es]
+
+stage: &stage
+  <<: *default
+  baseUrl: http://stage.miguelvinan.com
+
+latest: &latest
+  <<: *stage
+  baseUrl: http://latest.miguelvinan.com
+
+development:
+  <<: *latest
+  baseUrl: http://local.miguelvinan.com
+  html:
+    livereload: true
+    minify: false
+    css:
+      sassCompile: false
+      compress: false

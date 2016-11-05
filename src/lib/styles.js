@@ -4,6 +4,7 @@ var path = require('path')
 var sass = require('node-sass-middleware')
 var postcss = require('postcss-middleware')
 var autoprefixer = require('autoprefixer')
+var lostGrid = require('lost')
 
 // paths
 var srcPath = path.join(__dirname, '..')
@@ -14,26 +15,29 @@ module.exports = {
   postcss: postcssCompile
 }
 
-// options for node-sass
-var sassOptions = {
-  src: srcPath,
-  dest: destPath,
-  debug: true,
-  outputStyle: 'extended'
-}
 
 function sassCompile () {
+  // options for node-sass
+  var sassOptions = {
+    src: srcPath,
+    dest: destPath,
+    debug: true,
+    outputStyle: 'extended'
+  }
   return sass(sassOptions)
 }
 
-// options for postcss
-var postcssOptions = {
-  src: destPath,
-  plugins: [
-    autoprefixer()
-  ]
-}
 
 function postcssCompile () {
+  // options for postcss
+  var postcssOptions = {
+    src: function (req) {
+      return path.join(destPath, req.path)
+    },
+    plugins: [
+      autoprefixer(),
+      lostGrid()
+    ]
+  }
   return postcss(postcssOptions)
 }
