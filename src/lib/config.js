@@ -10,6 +10,6 @@ const config = yml.safeLoad(fs.readFileSync(ymlPath, 'utf-8'))
  * Return the selected environment configuration
  */
 
-export default function getConfig() {
+export default function getConfig () {
   return config[env().name] || {}
 }

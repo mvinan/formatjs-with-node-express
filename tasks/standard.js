@@ -1,7 +1,7 @@
 import gulp from 'gulp'
 import standard from 'gulp-standard'
 
-export default function () {
+module.exports = function () {
   gulp.task('lint', function () {
     return gulp.src([
       'src/**/*.js',

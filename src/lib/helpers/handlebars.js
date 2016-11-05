@@ -1,7 +1,8 @@
 import { minify } from 'html-minifier'
+import config from '../config'
 
 function compress (content) {
-  if (!__config.html.minify) {
+  if (!config().html.minify) {
     return content.fn(this)
   }
   return minify(content.fn(this), {
