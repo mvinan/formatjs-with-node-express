@@ -3,6 +3,6 @@ import $ from 'jquery'
 
 $(function(){
   $('.button').on('click', () => {
-    alert('Hi!')
+    console.log('clicked!');
   })
 })

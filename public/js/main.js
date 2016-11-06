@@ -54,7 +54,7 @@
 
 	(0, _jquery2.default)(function () {
 	  (0, _jquery2.default)('.button').on('click', function () {
-	    alert('Hi!');
+	    console.log('clicked!');
 	  });
 	});
 
