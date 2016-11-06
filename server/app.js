@@ -1,4 +1,3 @@
-'use strict'
 import express from 'express'
 import path from 'path'
 import logger from 'morgan'
@@ -7,9 +6,8 @@ import bodyParser from 'body-parser'
 import exphbs from 'express-handlebars'
 import config from './lib/config'
 
-import hbsHelpers from './lib/helpers/handlebars'
+import hbsHelpers from './lib/handlebars'
 import index from './routes/index'
-import users from './routes/users'
 
 const app = express()
 
@@ -31,11 +29,10 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '..', 'public')))
 
 // Routes
 app.use('/', index)
-app.use('/users', users)
 
 // Disabling x-powered-by
 app.disable('x-powered-by')
