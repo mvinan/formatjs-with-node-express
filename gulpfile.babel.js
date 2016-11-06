@@ -3,8 +3,10 @@ import nodemon from 'gulp-nodemon'
 import sass from 'gulp-sass'
 import browserSync from 'browser-sync'
 import standard from 'gulp-standard'
-import config from './server/lib/config'
+import webpack from 'gulp-webpack'
+import webpackConfig from './webpack.config'
 
+import config from './server/lib/config'
 const reload = browserSync.reload
 const port = config().serverPort || 3000
 
@@ -28,10 +30,17 @@ gulp.task('compileStyles', () => {
    .pipe(browserSync.stream())
 })
 
+gulp.task('webpack', function(){
+  return gulp.src('./client/js/app.js')
+    .pipe(webpack(webpackConfig))
+    .pipe(gulp.dest('./public/js/'))
+    .pipe(reload({stream: true}))
+})
+
 gulp.task('browser-sync', ['start-dev'], () => {
   browserSync.init({
     proxy: `http://0.0.0.0:${port}`,
-    files: ['public/**/*.*'],
+    // files: ['public/**/*.*'],
     browser: "google chrome",
     port: 4000,
     open: false
@@ -43,6 +52,8 @@ gulp.task('start-dev', cb => {
   nodemon({
     script: 'server/server.js',
     ext: 'js',
+    watch: ['server/*'],
+    ignore: ['client/*.js', 'node_modules/'],
     env: { 'NODE_ENV': 'development' }
   })
   .on('start', () => {
@@ -69,5 +80,6 @@ gulp.task('start', () => {
 
 gulp.task('default', ['browser-sync'], () => {
   gulp.watch('client/stylesheets/**/*.scss', ['compileStyles'])
+  gulp.watch('client/js/**/*.js', ['webpack'])
   gulp.watch('server/views/**/*.hbs').on("change", reload)
 })
