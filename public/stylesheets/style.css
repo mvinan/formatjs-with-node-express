@@ -19,3 +19,8 @@ h1 {
   margin: 20px;
   box-sizing: border-box;
   background-color: #F2F2F2; }
+
+#lang {
+  position: absolute;
+  top: 0;
+  right: 0; }

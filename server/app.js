@@ -6,8 +6,11 @@ import bodyParser from 'body-parser'
 import exphbs from 'express-handlebars'
 import config from './lib/config'
 
-import hbsHelpers from './lib/handlebars'
+import hbsHelpers, {addedLangToEndLinkHelper} from './lib/handlebars'
 import index from './routes/index'
+import users from './routes/users'
+import * as middle from './middlewaresTest'
+import intlData from './translates'
 
 const app = express()
 
@@ -31,8 +34,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '..', 'public')))
 
+// Testing Middlewares
+app.use(intlData)
+addedLangToEndLinkHelper(app)
+
 // Routes
 app.use('/', index)
+app.use('/users', users)
 
 // Disabling x-powered-by
 app.disable('x-powered-by')

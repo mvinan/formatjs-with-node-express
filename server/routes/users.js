@@ -3,7 +3,14 @@ const router = express.Router()
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {
-  res.send('respond with a resource')
+  let messages = res.locals.messages
+
+  res.render('users', {
+    title: 'Users',
+    data: {
+      intl: { messages }
+    }
+  })
 })
 
 export default router

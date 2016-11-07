@@ -6,6 +6,7 @@
   ],
   "plugins": [
     "transform-regenerator",
-    "syntax-async-functions"
+    "syntax-async-functions",
+    "transform-runtime"
   ]
 }
