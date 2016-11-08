@@ -1,32 +1,17 @@
 import $ from 'jquery'
+import socketio from 'socket.io-client'
 
-function getAvailableButtonsLang () {
-  const $langEs = $('body').find('[lang]')
-  const $langsButtons = $langEs.map((i, button) => {
-    const lang = $(button).attr('lang')
-    return lang
-  })
+const socket = socketio('http://0.0.0.0:3333')
 
-  return $langsButtons
-}
+let id = 'vote clicked!'
+const $buttonEmitter = $('#emiter')
+const $lang = $('#lang')
 
-function getCurrentLang () {
-  let currentLang = localStorage.getItem('locale')
-  return currentLang
-}
-
-async function setLang (language='es') {
-  return localStorage.setItem('locale', language)
-}
-
-async function displayCurrentLang () {
-  $('#lang').empty().append(getCurrentLang())
-}
-
-$('.button').on('click', async function () {
-  let lang = $(this).attr('lang')
-  await setLang(lang)
-  await displayCurrentLang()
+$buttonEmitter.on('click', function(ev){
+  socket.emit('vote:clicked', id)
+  return false
 })
 
-displayCurrentLang()
+socket.on('vote:done', function(msg){
+  $lang.empty().append(msg)
+})

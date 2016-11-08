@@ -16,7 +16,6 @@ const intlData = (req, res, next) => {
   res.locals.intlData = data
   res.locals.locale = req.query.lang || locale
 
-
   let query = res.locals.locale
   res.locals.messages = data.messages[query]
 

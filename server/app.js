@@ -9,13 +9,17 @@ import config from './lib/config'
 import hbsHelpers, {addedLangToEndLinkHelper} from './lib/handlebars'
 import index from './routes/index'
 import users from './routes/users'
-import * as middle from './middlewaresTest'
 import intlData from './translates'
 
 const app = express()
 
+// Connection with socket.io
+const server = require('http').Server(app)
+let io = require('socket.io')(server)
+
 // Loading config
 const port = config().serverPort || 3000
+server.listen(port, () => console.log(`Server running and Ready`))
 
 // view engine setup
 app.engine(config().views.engine, exphbs({
@@ -42,6 +46,21 @@ addedLangToEndLinkHelper(app)
 app.use('/', index)
 app.use('/users', users)
 
+// Connection with Socket
+io.on('connection', (socket) => {
+  console.log('User connected')
+  socket.on('vote:clicked', vote => {
+    app.use((req, res, next) => {
+      socket.emit('vote:done', res.locals.locale)
+      next()
+    })
+  })
+
+  socket.on('disconnect', () => {
+    console.log('User Disconected')
+  })
+})
+
 // Disabling x-powered-by
 app.disable('x-powered-by')
 
@@ -62,7 +81,5 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500)
   res.render('error')
 })
-
-app.listen(port, () => console.log(`Server running and Ready`))
 
 export default app
