@@ -1,4 +1,4 @@
-# CMS with node
+# Testing translations with FormatJS library
 
 *Init Project*
 ```
